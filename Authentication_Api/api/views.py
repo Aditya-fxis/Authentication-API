@@ -6,4 +6,7 @@ from api.serializers import UserRegistrationSerializer
 class UserRegistrationView(APIView):
     def post(self, request, format=None):
         serializer = UserRegistrationSerializer(data=request.data)
-        return Response({'msg':'Registration Success'})
+        if serializer.is_valid(raise_exception=True):
+            user = serializer.save()
+            return Response({'msg':'Registration Successful'}, status=status.HTTP_201_CREATED)
+        return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
