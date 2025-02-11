@@ -13,6 +13,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 import os
+from dotenv import load_dotenv
+
+# load_dotenv()
+BASE_DIR = Path(__file__).resolve().parent.parent
+# Explicitly specify the .env file path
+dotenv_path = os.path.join(BASE_DIR, ".env")
+load_dotenv(dotenv_path, override=True) 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -142,6 +149,12 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
 EMAIL_USE_TLS = True
+
+# Debugging: Print loaded variables
+print("User",EMAIL_HOST_USER)
+print("Loaded EMAIL_USER:", os.environ.get("EMAIL_USER"))
+print("Loaded EMAIL_PASS:", os.environ.get("EMAIL_PASS"))
+
 #simple jwt
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
