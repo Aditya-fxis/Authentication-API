@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -22,7 +22,7 @@ export default function Login() {
       );
 
       const { token } = response.data;
-      console.log("tokeen", token)
+      // console.log("token", token)
       if (rememberMe) {
         localStorage.setItem("authToken", token.access);
       } else {
@@ -80,13 +80,13 @@ export default function Login() {
               />
               <span>Remember me</span>
             </label>
-            <button
+            <Link to="/send-reset-email"
               type="button"
               className="text-blue-500 hover:underline"
-              onClick={() => alert("Forgot Password? Implement this feature!")}
+              onClick={() => alert("Forgot Password")}
             >
               Forgot password?
-            </button>
+            </Link>
           </div>
 
           {/* Login Button */}
