@@ -49,7 +49,7 @@ const RegisterPage = () => {
         tc: false,
       });
     } catch (err) {
-      const errorData = err.response.data.message;
+      const errorData = err.response?.data?.message;
       if (typeof errorData === "object") {
         setError(Object.values(errorData).join(", "));
       } else {
